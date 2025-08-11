@@ -1,0 +1,11 @@
+{
+  "folder_name": "test",
+  "name": "test",
+  "model": "gpt-4o-mini",
+  "system_prompt": "you are helpful assitant",
+  "initial_line": "hlo , how are you",
+  "pdf_filename": "cover.pdf",
+  "split": true,
+  "created_at": "2025-08-11T12:35:33.984695",
+  "groq_api_key": "12334"
+}
