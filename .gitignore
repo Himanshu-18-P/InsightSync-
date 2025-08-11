@@ -9,6 +9,12 @@ __pycache__/
 # Distribution / packaging
 .Python
 build/
+# Keep folders, ignore contents
+/bots_data/*
+!/bots_data/.gitkeep
+
+/vector_store/*
+!/vector_store/.gitkeep
 develop-eggs/
 dist/
 downloads/

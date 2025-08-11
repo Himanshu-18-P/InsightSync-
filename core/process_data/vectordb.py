@@ -61,7 +61,7 @@ class PDFIndexer:
         with open(bm25_path, "wb") as f:
             pickle.dump(bm25_index, f)
 
-        print(f"✅ Indexes built and saved to: {self.index_dir}")
+        print(f"Indexes built and saved to: {self.index_dir}")
 
     def load_hybrid_retriever(self , index_dir) -> EnsembleRetriever:
         """

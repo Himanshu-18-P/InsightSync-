@@ -1,14 +1,13 @@
-# core/process_data/process_api.py
 import os
 import base64
 from typing import Dict, Optional
 
-from core.process_data.savedata import BotSaver   # your BotSaver (with initial_line support)
-from core.process_data.vectordb import PDFIndexer # your PDFIndexer (with set_path & build_and_save_indexes)
+from core.process_data.savedata import BotSaver  
+from core.process_data.vectordb import PDFIndexer 
+from core.oai.answer import *
 
-BOT_ROOT = "bots_data/pdf_bots"   # where BotSaver stores PDF/config
-VECTOR_ROOT = "vector_store"      # where FAISS/BM25 will live: vector_store/<folder_name>/
-
+BOT_ROOT = "bots_data/pdf_bots" 
+VECTOR_ROOT = "vector_store"      
 
 class ProcessApi:
     def __init__(self, bot_root: str = BOT_ROOT, vector_root: str = VECTOR_ROOT):
@@ -27,10 +26,10 @@ class ProcessApi:
         model: str,
         system_prompt: str,
         pdf_filename: str,
-        initial_line: str = "",          # new: greeting line
+        initial_line: str = "",         
         split: bool = True,
-        pdf_base64: Optional[str] = None,  # provide one of these:
-        pdf_bytes: Optional[bytes] = None, # ...either base64 OR raw bytes
+        pdf_base64: Optional[str] = None,  
+        pdf_bytes: Optional[bytes] = None,
         groq_api_key:str
     ) -> Dict:
         """
@@ -59,16 +58,16 @@ class ProcessApi:
             split=split,
             initial_line=initial_line
         )
-        folder_name = meta["folder_name"]  # slug like "my-legal-bot"
+        folder_name = meta["folder_name"]  
 
-        # ---- 3) Build indexes ----
+
         pdf_path = os.path.join(self.bot_root, folder_name, "document.pdf")
-        index_dir = os.path.join(self.vector_root, folder_name)  # e.g., vector_store/my-legal-bot/
+        index_dir = os.path.join(self.vector_root, folder_name)  
 
         self._create_index.set_path(pdf_path=pdf_path, index_dir=index_dir)
         self._create_index.build_and_save_indexes(split=split)
 
-        # ---- 4) Return minimal info ----
+        
         return {
             "folder_name": folder_name,
             "index_dir": index_dir,

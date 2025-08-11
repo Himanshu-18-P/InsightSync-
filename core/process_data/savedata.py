@@ -122,36 +122,4 @@ class BotSaver:
 
 
 if __name__ == '__main__':
-    # Example with raw bytes (multipart/form-data style)
-    with open("sample.pdf", "rb") as f:
-        pdf_data = f.read()
-
-    saver = BotSaver()
-    meta = saver.save_bot(
-        name="My Legal Bot",
-        model="gpt-4o-mini",
-        system_prompt="You are a legal assistant.",
-        pdf_bytes=pdf_data,                 # <-- raw bytes for form-data
-        pdf_filename="sample.pdf",
-        split=True,
-        initial_line="Hi! Upload your contract to begin."  # <-- NEW
-    )
-    print("Bot saved (bytes):", meta)
-
-    # Example with base64 (if needed)
-    import base64 as _b64
-    pdf_b64 = _b64.b64encode(pdf_data).decode("utf-8")
-    meta2 = saver.save_bot_from_base64(
-        name="My Legal Bot 2",
-        model="gpt-4o-mini",
-        system_prompt="You are a legal assistant.",
-        pdf_base64=pdf_b64,                 # <-- base64 path
-        pdf_filename="sample.pdf",
-        split=False,
-        initial_line="Hello! Ask me anything about your PDF."
-    )
-    print("Bot saved (base64):", meta2)
-
-
-if __name__ == '__main__':
     print('done')

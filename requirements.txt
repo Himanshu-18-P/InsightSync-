@@ -4,3 +4,4 @@ streamlit
 youtube-transcript-api
 python-multipart
 pypdf
+groq
