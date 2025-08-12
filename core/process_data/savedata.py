@@ -96,7 +96,6 @@ class BotSaver:
             initial_line=initial_line,
         )
 
-    # ---------- helpers ----------
 
     @staticmethod
     def _slugify(name: str) -> str:

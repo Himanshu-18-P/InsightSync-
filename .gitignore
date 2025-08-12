@@ -8,11 +8,13 @@ __pycache__/
 
 # Distribution / packaging
 .Python
+test.txt
 build/
+test.py
 # Keep folders, ignore contents
 /bots_data/*
 !/bots_data/.gitkeep
-
+InsightsyncKb.pdf
 /vector_store/*
 !/vector_store/.gitkeep
 develop-eggs/

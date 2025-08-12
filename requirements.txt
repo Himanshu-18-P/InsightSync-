@@ -3,24 +3,3 @@ uvicorn
 python-multipart
 pypdf
 groq
-
-
-# Project Title
-
-## Description
-
-## Features
-
-## Requirements
-
-## Installation
-
-## Configuration
-
-## Usage
-
-## API Endpoints
-
-## File Structure
-
-## Example Requests

@@ -56,7 +56,14 @@ def start(payload:StartLine):
         start_line = config_data.get('initial_line')
         api = config_data.get('groq_api_key')
         llm  = GroqAIProcessor(api)
-
+        try:
+            llm.run_completion('hello' , '' , [] ,"health check" , "llama-3.3-70b-versatile" )
+        except Exception as e:
+            # Any failure here means the API key / access is bad or model not available
+            raise HTTPException(
+                status_code=400,
+                detail="Invalid Groq API key or model access. Please provide a correct API key."
+            ) from e
         return {"initial_line": start_line}
     except ValueError as ve:
         raise HTTPException(status_code=400, detail=str(ve))
@@ -116,12 +123,8 @@ async def talk_bot(payload : ConversationData):
         config_data = load_json(config_path)
         prompt = config_data.get('system_prompt')
         model = config_data.get('model')
-        print('#'*10)
-        context
         ## pass context , question  , model and system prompt to llm 
         response = llm.run_completion(user_text , context , last_conversation , prompt , model)
-        print('#'*10)
-        print(response)
         return  {"answer" : response}
     
     except Exception as e:
