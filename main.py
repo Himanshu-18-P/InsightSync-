@@ -133,4 +133,5 @@ async def talk_bot(payload : ConversationData):
 
 if __name__ == '__main__':
     import uvicorn
-    uvicorn.run("main:app", port=5000, reload=True)
+    uvicorn.run("main:app", port=8505 , host='0.0.0.0')  # https://sangya.thefirstimpression.ai/docs visit here 
+# artistry_backend/hsp
